@@ -1,0 +1,5 @@
+Django>5.1
+nanodjango
+Pillow 
+django-filter
+django-htmx
