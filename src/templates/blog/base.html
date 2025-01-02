@@ -9,16 +9,19 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
-    <div class="preloader">
+    <div class="preloader" data-is_authenticated="{{ request.user.is_authenticated }}">
         <div></div>
         <div>Loading No Content!</div>
     </div>
-    <button hx-post="{{ request.path }}" hx-trigger="click" hx-swap="outerHTML" hx-target="#result">
+    <!-- <button hx-post="{{ request.path }}" hx-trigger="click" hx-swap="outerHTML" hx-target="#result">
       Click Me
     </button>
     <div id="result">oaoama</div>
-    <h1>From the base file</h1>
-
+    <h1>From the base file</h1> -->
+    {% include "blog/partials/narbar.html" %}
+    {% include "blog/partials/header.html" %}
+    {% include "blog/partials/section.html" with queryset=qs %}
+    {% include "blog/partials/footer.html" %}
   <script src="{% static 'js/script.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
 </body>

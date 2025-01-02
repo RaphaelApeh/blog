@@ -3,7 +3,8 @@ const preloader = document.querySelector(".preloader");
 // window.addEventListener('load', () => {
 //     preloader.remove();
 // })
-
-// setTimeout(function(){
-//     preloader.remove()
-// }, 5000)
+if (preloader.dataset.is_authenticated === "True"){
+    window.addEventListener('load', () => {
+            preloader.remove();
+        })
+}
