@@ -1,1 +1,25 @@
-<h1>From the base file</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <title>{% block title %}Blog🗨{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
+    <div class="preloader">
+        <div></div>
+        <div>Loading No Content!</div>
+    </div>
+    <button hx-post="{{ request.path }}" hx-trigger="click" hx-swap="outerHTML" hx-target="#result">
+      Click Me
+    </button>
+    <div id="result">oaoama</div>
+    <h1>From the base file</h1>
+
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
