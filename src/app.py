@@ -54,7 +54,7 @@ class Post(models.Model):
             title = Truncator(self.title).chars(15).replace('.',"")
             self.slug = slugify(title)
         super().save(*args, **kwargs)
-    
+
     def get_absolute_url(self):
         return reverse("detail-page", kwargs={'slug': self.slug})
             
