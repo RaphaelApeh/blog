@@ -26,7 +26,7 @@ if DEBUG:
 # models.py
 
 class CATEGORIES_CHOICES(models.TextChoices):
-    SPORT = "sport", "Sport"
+    SPORTS = "sports", "Sports"
     ENTERTAINMENT = "entertainment", "Entertainment"
     TECHNOLOGY = "technology", "Technology"
     FASHION = "fashion", "Fashion"
@@ -37,7 +37,7 @@ class Post(models.Model):
     username = models.CharField(max_length=20, db_index=True)
     title = models.CharField(max_length=50)
     text = models.TextField()
-    category = models.CharField(max_length=15, choices=CATEGORIES_CHOICES.choices, default=CATEGORIES_CHOICES.SPORT)
+    category = models.CharField(max_length=15, choices=CATEGORIES_CHOICES.choices, default=CATEGORIES_CHOICES.SPORTS)
     slug = models.SlugField(blank=True, null=True)
     image = models.ImageField(upload_to='blog_posts', default="default.jpg")
     timestamp = models.DateTimeField(auto_now_add=True)
