@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import datetime
+
 from django.db import models
 from django.http import HttpRequest
 from django.urls import reverse
@@ -74,11 +76,13 @@ class Comment(models.Model):
 
 @app.route('/', name="home-page")
 def home_page_view(request: HttpRequest):
-    qs = Post.objects.all()
+    qs = Post.objects.all().order_by('-timestamp')
+    current_year = datetime.datetime.now().year
     if request.method == 'POST':
         return f"{get_random_string(10)}"
     context = {
-        "qs":qs
+        "qs":qs,
+        'year':current_year
     }
     return TemplateResponse(request, 'blog/base.html', context)
 

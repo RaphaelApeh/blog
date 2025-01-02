@@ -4,13 +4,13 @@
         <h1 class="editor-h1">Editor Picks</h1>
         <div class="articles">
             {% for obj in queryset %}
-            <a href="./html/article.html" class="card">
+            <a href="{{obj.get_absolute_url}}" class="card">
                 <img src="{{obj.image.url}}" alt="" />
                 <article>
                     <p class="{{ obj.category|lower }}-category">{{obj.category|capfirst}}</p>
                     <h1>{{ obj.title|title }}</h1>
                     <p>
-                        {{ obj.text }}
+                        {{ obj.text|truncatewords:5 }}
                     </p>
                 </article>
             </a>

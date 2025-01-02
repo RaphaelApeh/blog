@@ -4,7 +4,7 @@
             <article>
                 <div class="logo">
                     <i class="fas fa-globe fa-2x"></i>
-                    <h2>News<span>Grid</span></h2>
+                    <h2>Post<span>Grid</span></h2>
                 </div>
                 <p>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
@@ -16,8 +16,8 @@
             <article>
                 <h4>EMAIL NEWSLETTER</h4>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                <input type="email" placeholder="Enter Email..." />
-                <a href="#"> Subscribe</a>
+                <input type="email" name="user_email" placeholder="Enter Email..." />
+                <a hx-post="/subscribe/"> Subscribe</a>
             </article>
 
             <article>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="copyright">
-            <p>Copyright &copy; 2021, All Rights Reserved</p>
+            <p>Copyright &copy; {{year}}, All Rights Reserved</p>
         </div>
     </div>
 </footer>

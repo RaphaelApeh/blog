@@ -13,6 +13,7 @@
         <div></div>
         <div>Loading No Content!</div>
     </div>
+    {% block content %}
     <!-- <button hx-post="{{ request.path }}" hx-trigger="click" hx-swap="outerHTML" hx-target="#result">
       Click Me
     </button>
@@ -22,6 +23,7 @@
     {% include "blog/partials/header.html" %}
     {% include "blog/partials/section.html" with queryset=qs %}
     {% include "blog/partials/footer.html" %}
+    {% endblock content %}
   <script src="{% static 'js/script.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
 </body>

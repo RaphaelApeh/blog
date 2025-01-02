@@ -13,8 +13,8 @@
         </div>
 
         <div class="options">
-            <a href="/" class="current">Home</a>
-            <a href="">About</a>
+            <a href="/" {% if '/' in request.path %} class="current" {% endif %}>Home</a>
+            <a href="" {% if '/about' in request.path %} class="current" {% endif %}>About</a>
         </div>
     </div>
 </nav>
