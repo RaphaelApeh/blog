@@ -91,8 +91,10 @@ def home_page_view(request: HttpRequest):
 def detail_page_view(request: HttpRequest, slug: str):
     
     obj = get_object_or_404(Post, slug__iexact=slug)
+    categories = CATEGORIES_CHOICES.choices
     context = {
-        'object': obj
+        'object': obj,
+        'categories':[x[1] for x in categories]
     }
     return TemplateResponse(request, "blog/detail.html", context)
 

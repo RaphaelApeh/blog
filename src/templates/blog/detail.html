@@ -1,4 +1,5 @@
 {% extends "./base.html" %}
+{% load humanize %}
 
 {% block title %}post {{object.title|truncatechars:4}}{% endblock %}
 {% block content %}
@@ -10,7 +11,7 @@
                 <h2>{{object.title|title}}</h2>
                 <div>
                     <p>
-                        <i class="fas fa-user fa-1x"></i> Written By {{object.username|upper}} April 14, 2021
+                        <i class="fas fa-user fa-1x"></i> Written By {{object.username|upper}} {{ object.timestamp|naturaltime }} {# format 3 hours ago  #}
                     </p>
                     <p class="{{object.category|lower}}-category">{{object.category|capfirst}}</p>
                 </div>
@@ -48,11 +49,9 @@
             <article>
                 <h3>CATEGORIES</h3>
                 <ul>
-                    <li>Sports</li>
-                    <li>Entertainment</li>
-                    <li>Technology</li>
-                    <li>Fashion</li>
-                    <li>Shopping</li>
+                    {% for category in categories %}
+                    <li>{{ category|capfirst }}</li>
+                    {% endfor %}
                 </ul>
             </article>
 
