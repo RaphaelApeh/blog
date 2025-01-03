@@ -94,8 +94,7 @@ def detail_page_view(request: HttpRequest, slug: str):
     context = {
         'object': obj
     }
-    return f"{obj.title}"
-    # return TemplateResponse(request, "", context)
+    return TemplateResponse(request, "blog/detail.html", context)
 
 
 
