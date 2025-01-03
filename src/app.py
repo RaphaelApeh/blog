@@ -20,7 +20,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY", default="")
 DEBUG = config("DJANGO_DEBUG", default=True, cast=bool)
 
 
-app = Django()
+app = Django(EXTRA_APPS=['django.contrib.humanize'])
 
 if DEBUG:
     urlpatterns += static(app.settings.MEDIA_URL, document_root=app.settings.MEDIA_ROOT)
