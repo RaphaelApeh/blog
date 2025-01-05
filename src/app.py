@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import datetime
+from typing import Literal, List
 
 from django.db import models
 from django.http import HttpRequest
@@ -9,6 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.crypto import get_random_string
 from django.conf.urls.static import static
 from django.utils.text import slugify, Truncator
+from django.core.paginator import Paginator
 from django.template.response import TemplateResponse
 
 from nanodjango import Django
@@ -71,6 +74,27 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
     
+# api.py
+
+class PostSchema(app.ninja.ModelSchema):
+
+    class Meta:
+        model = Post
+        fields = ['username', 'title', 'text', 'image']
+
+
+@app.api.get('/posts', response=List[PostSchema])
+def posts_api_view(request: HttpRequest):
+    return Post.objects.all()
+
+@app.api.post('/create')
+def posts_create_view(request: HttpRequest, payload: PostSchema):
+    value = json.loads(request.body)
+    if Post.objects.filter(**payload.dict()).exists():
+        return {'Error': "Post already exists"}
+    obj = Post.objects.create(**payload.dict())
+    return {'title': obj.title, "username": obj.username, "slug":obj.slug, "text": obj.text}
+    
 
 # views.py
 
@@ -78,10 +102,13 @@ class Comment(models.Model):
 def home_page_view(request: HttpRequest):
     qs = Post.objects.all().order_by('-timestamp')
     current_year = datetime.datetime.now().year
+    pagination = Paginator(qs, 5)
+    page = request.GET.get("page", 1)
+    newqs = pagination.get_page(page)
     if request.method == 'POST':
         return f"{get_random_string(10)}"
     context = {
-        "qs":qs,
+        "qs":newqs,
         'year':current_year
     }
     return TemplateResponse(request, 'blog/base.html', context)
@@ -94,9 +121,17 @@ def detail_page_view(request: HttpRequest, slug: str):
     categories = CATEGORIES_CHOICES.choices
     context = {
         'object': obj,
-        'categories':[x[1] for x in categories]
+        'categories':[x[1] for x in categories] # example: ["sports", ...]
     }
     return TemplateResponse(request, "blog/detail.html", context)
+
+
+
+@app.route("/create/", name="post-create")
+def create_post_view(request: HttpRequest):
+    if request.method == "POST":
+        print(request.body)
+    return TemplateResponse(request, "blog/create.html")
 
 
 

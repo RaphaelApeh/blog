@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body hx-headers='{"X-CSRFToken":"{{csrf_token}}"}'>
-    <div class="preloader" data-is_authenticated="{{ request.user.is_authenticated }}">
+    <div class="preloader">
         <div></div>
         <div>Loading No Content!</div>
     </div>
@@ -25,6 +25,5 @@
     {% include "blog/partials/footer.html" %}
     {% endblock content %}
   <script src="{% static 'js/script.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

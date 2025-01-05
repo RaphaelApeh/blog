@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% include "blog/partials/narbar.html" %}
+<br>
+    <center><h4>Create a post</h4>
+        <form>
+            <input type="text" id="username" placeholder="username">
+            <input type="text" id="title" placeholder="title">
+            <input type="text" id="text" placeholder="text">
+            <input type="file" id="image" placeholder="image" accept="jpg,png">
+            <button>Submit</button>
+        </form>
+    </center>
+<script src="{% static 'js/main.js' %}" data-csrf="{{csrf_token}}"></script>
+{% endblock content %}
