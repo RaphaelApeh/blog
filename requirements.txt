@@ -2,5 +2,3 @@ Django>5.1
 nanodjango
 Pillow 
 python-decouple
-django-filter
-django-htmx
