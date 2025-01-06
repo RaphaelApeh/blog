@@ -1,6 +1,6 @@
 # PostGird 
 
-A blog application with [django](https://djangoprojects.com) and [nanodjango]()
+A blog application with [django](https://djangoprojects.com) and [nanodjango](https://github.com/radiac/nanodjango)
 
 ## Get Started 🎯
 - Create a virtual environment 📁
