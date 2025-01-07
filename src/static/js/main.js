@@ -3,7 +3,6 @@ const inputs = document.querySelectorAll("input");
 const username = document.querySelector("#username");
 const title = document.querySelector("#title");
 const text = document.querySelector("#text");
-const image = document.querySelector("#image")
 
 document.addEventListener("DOMContentLoaded", function(e){
     if (localStorage.getItem("username")){
@@ -24,7 +23,7 @@ document.querySelector("form").addEventListener("submit", function(e){
         }
         const response = await fetch("http://127.0.0.1:8000/api/create", {
             "method": "POST",
-            "body": JSON.stringify({"username": localStorage.getItem("username"), "title": title.value, "text": text.value, 'image':image.value})
+            "body": JSON.stringify({"username": localStorage.getItem("username"), "title": title.value, "text": text.value})
         })
         const sendData = await response.json()
         console.log(sendData)
